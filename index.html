@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Flexi GPA Calculator</title>
+  <link rel="stylesheet" href="cgpa.css" />
+</head>
+<body>
+  <header class="site-header">
+  <div class="brand">
+    <img src="logo.jpg" alt="Flexi GPA Logo" class="logo" onerror="this.style.display='none'">
+    <div>
+      <div class="site-title">Flexi GPA Calculator</div>
+      <div class="site-sub">Smart CGPA & GPA planner for students</div>
+    </div>
+  </div>
+
+  <div class="header-actions">
+    <label class="toggle" title="Toggle dark / light mode">
+      <input id="darkToggle" type="checkbox" />
+      <span class="toggle-slider"></span>
+    </label>
+    <a href="https://github.com/Siddharth-Nehra" target="_blank" class="icon-btn" title="Project on GitHub">GH</a>
+    <a href="https://www.linkedin.com/in/siddharth-nehra-ab0825366/" target="_blank" class="icon-btn" title="Contact on LinkedIn">in</a>
+  </div>
+</header>
+
+
+  <main class="main">
+    <section class="calculator card">
+      <h2>CGPA / GPA Calculator</h2>
+      <p class="muted">Enter grades (S → F) and credits. Default credits are <strong>0</strong>. Add or remove subjects as needed.</p>
+
+      <div class="top-inputs">
+        <div class="field" title="Enter cumulative CGPA from previous semesters">
+          <label>Previous CGPA</label>
+          <input id="prevCgpa" type="number" step="0.01" min="0" max="10" value="0">
+        </div>
+        <div class="field" title="Total credits earned previously">
+          <label>Previous Credits</label>
+          <input id="prevCredits" type="number" step="0.5" min="0" value="0">
+        </div>
+        <div class="field" title="Quick target CGPA (optional) - used for prediction">
+          <label>Target CGPA (optional)</label>
+          <input id="targetCgpa" type="number" step="0.01" min="0" max="10" placeholder="e.g. 8.0">
+        </div>
+      </div>
+
+      <div class="subject-actions">
+        <button id="addSubject" class="action">+ Add Subject</button>
+        <button id="removeSubject" class="action">− Remove Subject</button>
+        <button id="autoFill" class="action" title="Auto-fill sample data">✦ Sample</button>
+      </div>
+
+      <div id="subjects" class="subjects"></div>
+
+      <div class="controls">
+        <button id="calculate" class="primary">Calculate</button>
+        <button id="reset" class="ghost">Reset</button>
+        <button id="download" class="ghost">Download Image</button>
+        <button id="share" class="ghost">Copy Results</button>
+        <a id="waShare" class="ghost" target="_blank" rel="noopener" title="Share via WhatsApp">WhatsApp</a>
+        <a id="mailShare" class="ghost" href="#" title="Share via Email">Email</a>
+      </div>
+
+      <div id="results" class="results card">
+        <div class="visuals" id="visuals">
+            <canvas id="gauge" width="180" height="180"></canvas>
+          <div class="progress-wrapper">
+            <div class="progress-bar-bg" aria-hidden="true">
+              <div id="progressBar" class="progress-bar"></div>
+            </div>
+            <div class="progress-label"><span id="progressPercent">0%</span> of 10.0</div>
+          </div>
+        </div>
+
+        <div class="result-text">
+          <p id="semesterGpa" title="Semester GPA/SGPA will appear here">Semester GPA: —</p>
+          <p id="cumulativeGpa" title="Cumulative GPA/CGPA will appear here">Cumulative GPA: —</p>
+          <p id="suggestion" class="muted small">Tip: Add credits and grades then click Calculate.</p>
+        </div>
+      </div>
+    </section>
+
+    <aside class="info card">
+      <h3>Grade Reference</h3>
+      <table class="ref-table">
+        <thead><tr><th>Grade</th><th>Point</th></tr></thead>
+        <tbody>
+          <tr><td>S</td><td>10</td></tr>
+          <tr><td>A</td><td>9</td></tr>
+          <tr><td>B</td><td>8</td></tr>
+          <tr><td>C</td><td>7</td></tr>
+          <tr><td>D</td><td>6</td></tr>
+          <tr><td>E</td><td>5</td></tr>
+          <tr><td>F</td><td>0</td></tr>
+        </tbody>
+      </table>
+
+      <hr>
+
+      <h3>FAQ</h3>
+      <details>
+        <summary>What is GPA?</summary>
+        <p>GPA (Grade Point Average) is an average of grade points for courses in a semester.</p>
+      </details>
+      <details>
+        <summary>What is CGPA?</summary>
+        <p>CGPA is Cumulative Grade Point Average across semesters — weighted by credits.</p>
+      </details>
+      <details>
+        <summary>How is it calculated?</summary>
+        <p>CGPA = Σ(grade_point × credit) / Σ(credit)</p>
+      </details>
+      <details>
+        <summary>GPA vs CGPA</summary>
+        <p>GPA = semester average. CGPA = cumulative weighted average over semesters.</p>
+      </details>
+
+      <hr>
+
+      <h3>Tips</h3>
+      <ul class="tips">
+        <li>Prioritize high-credit courses for improvement.</li>
+        <li>Use the target field to plan future grades.</li>
+        <li>Keep a local copy using Save (💾).</li>
+      </ul>
+
+      <hr>
+
+      <h3>About</h3>
+      <p>Flexi GPA Calculator — simple, fast, and mobile-friendly. <br>
+        <a href="https://github.com/Siddharth-Nehra" target="_blank">GitHub</a>
+      </p>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+  <div class="footer-left">
+    <a href="https://github.com/vishavrao" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/vishav-rao-a253b833b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn</a>
+  </div>
+
+  <div class="footer-center">
+    © <span id="year"></span> <strong>Flexi FFCS</strong> • v1.0
+  </div>
+
+  <div class="footer-right">
+    <a href="mailto:youremail@example.com">Contact</a>
+  </div>
+</footer>
+
+
+  <!-- html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+    integrity="sha512-BNa5e6gNqH6iR4kqTmx1q6yFqkS6fYqv+Y0qf6b4s6p2E6yqV8N3C1z9d3r3k2Kp6QxQz9Qw1yqJfQ5Y3z6+g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="cgpa.js"></script>
+</body>
+</html>
